@@ -1,10 +1,5 @@
 # Chocobo
 
-[![Version](http://cocoapod-badges.herokuapp.com/v/Chocobo/badge.png)](http://cocoadocs.org/docsets/Chocobo)
-[![Platform](http://cocoapod-badges.herokuapp.com/p/Chocobo/badge.png)](http://cocoadocs.org/docsets/Chocobo)
-
-## Requirements
-
 ## Installation
 
 Chocobo is available through [CocoaPods](http://cocoapods.org), to install
