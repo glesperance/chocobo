@@ -1,3 +1,11 @@
+//
+//  Collection.m
+//  PetroFeedApp
+//
+//  Created by Mark on 11/22/2013.
+//  Copyright (c) 2013 PetroFeed. All rights reserved.
+//
+
 #import "Collection.h"
 
 @implementation Collection
@@ -33,22 +41,24 @@
     [self clearModels];
     [self getFromEndpoint:[self collectionEndpoint] withParams:params onSuccess:^(id responseObject) {
         NSDictionary *attributes = [responseObject valueForKey:@"rigs"];
-
+        
         for (NSDictionary* key in attributes) {
-            // NOTE: THIS IS HARDCODED FOR NOW
-            // Rig *model = [[Rig alloc] init];
-            // [model updateModelWithJson:key];
-
+            
+            Class modelFromString = NSClassFromString([self model]);
+            id modelObject = [[modelFromString alloc] init];
+            
+            [modelObject performSelector: NSSelectorFromString(@"updateModelWithJson:") withObject:key];
+            
             // add the object to the model group
-            // [self.models addObject:model];
+            [self.models addObject:modelObject];
         }
 
         success(responseObject);
-
+        
     } onFailure:^(NSError *error) {
-
+        
         failure(error);
-
+        
     }];
 }
 
