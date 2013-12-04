@@ -104,7 +104,6 @@ model of the model type that the relationship is set.
 Synthesize and set up the relationship in a loop inside your updateModelWithJson: function
 
 ```c
-
 # models/user.m
 
 @synthesize wells = _wells;
@@ -118,7 +117,31 @@ Synthesize and set up the relationship in a loop inside your updateModelWithJson
         [self.accounts addObject:account];
     }
 }
+```
 
+### Has One Relationships
+
+To setup a has one relationship on your models, set up a property on your model of the type you would like to set it up with.
+
+```c
+# models/user.h
+
+#import 'Account.h'
+
+@property (nonatomic, retain) Account *account;
+```
+
+And then in updateModelWithJson:
+
+```c
+# models/user.m
+
+-(void) updateModelWithJson:(NSDictionary *)json
+{
+    Account *account = [[Account alloc] init];
+    [account updateModelWithJson: [json valueForKey:@"account"]];
+    self.account = account;
+}
 ```
 
 ## License
