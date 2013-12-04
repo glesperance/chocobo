@@ -53,6 +53,72 @@ Now you can call:
     }];
 ```
 
+### Collections
+
+Collections will extend off the Collection object.
+
+```c
+#import "Collection.h"
+
+@interface Users : Collection
+
+@end
+```
+
+Your collection will then need to overide 2 functions
+
+```c
+-(id)model
+{
+    return @"User";
+}
+
+-(NSString *)collectionEndpoint
+{
+    return @"users.json";
+}
+```
+
+This will allow the collection to automatically grab all the models from the collection
+endpoint and set them in the models array.
+
+Accessing the models in a collection are easy. Just use the models accessor.
+
+```c
+[[collection models] objectAtIndex: 0];
+```
+
+### Has Many Relationships
+
+Setting up a has many relationship in your model is easy. Set up an NSMutableArray as a property on the
+model of the model type that the relationship is set.
+
+```c
+# models/user.h
+
+@property (nonatomic, retain) NSMutableArray *accounts;
+```
+
+Synthesize and set up the relationship in a loop inside your updateModelWithJson: function
+
+```c
+
+# models/user.m
+
+@synthesize wells = _wells;
+
+-(void) updateModelWithJson:(NSDictionary *)json
+{
+    for (NSDictionary* key in [json valueForKey:@"accounts"]) {
+        Account *accountModel = [[Account alloc] init];
+        [accountModel updateModelWithJson:key];
+
+        [self.accounts addObject:account];
+    }
+}
+
+```
+
 ## License
 
 ** Creative Commons 3.0 - Attribution Sharealike**
