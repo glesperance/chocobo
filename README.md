@@ -9,6 +9,19 @@ it simply add the following line to your Podfile:
 
     pod "Chocobo"
 
+There's one other step that you will need to do in order to get it working. Add a file to your project and call it 'Environment.plist'. Inside of there you will need to specify your different API environments you want to use.
+
+[insert plist image]
+
+Now finally add a 'Configuration' parameter to your app's plist.
+
+```c
+# support/appName.plist
+
+Configuration (String) 'dev(or whatever you named your environment you want to use)'
+
+```
+
 ## Usage
 
 Chocobo allows you to easily create async models/collections in your iOS app to communicate easily with a RESTful API.
