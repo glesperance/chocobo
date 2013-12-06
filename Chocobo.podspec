@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Chocobo"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "Backbone-ish up your iOS models"
   s.description  = <<-DESC
                     Add async functions to your iOS models so you don't have to worry about another library.
