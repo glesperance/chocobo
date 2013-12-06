@@ -11,7 +11,7 @@ it simply add the following line to your Podfile:
 
 There's one other step that you will need to do in order to get it working. Add a file to your project and call it 'Environment.plist'. Inside of there you will need to specify your different API environments you want to use.
 
-![Pedro](https://db.tt/wU3fzM4m)
+![Pedro](https://dl.dropboxusercontent.com/u/420961/Screen%20Shot%202013-12-05%20at%205.16.13%20PM.png)
 
 Now finally add a 'Configuration' parameter to your app's plist.
 
