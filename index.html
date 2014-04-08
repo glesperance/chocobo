@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Chocobo by PetroFeed</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Chocobo</h1>
+        <h2>Backbone-ish up your iOS models</h2>
+        <a href="https://github.com/PetroFeed/chocobo" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p>Backbon-ify your iOS models and make it extremely easy to communicate with a RESTful API. Provides an easy API to connect, communicate and return success/failure events.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Chocobo is available through <a href="http://cocoapods.org">CocoaPods</a>, to install
+it simply add the following line to your Podfile:</p>
+
+<pre><code>pod "Chocobo"
+</code></pre>
+
+<p>There's one other step that you will need to do in order to get it working. Add a file to your project and call it 'Environment.plist'. Inside of there you will need to specify your different API environments you want to use.</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/420961/Screen%20Shot%202013-12-05%20at%205.16.13%20PM.png" alt="Pedro"></p>
+
+<p>Now finally add a 'Configuration' parameter to your app's plist.</p>
+
+<div class="highlight highlight-c"><pre><span class="cp"># support/appName.plist</span>
+
+<span class="n">Configuration</span> <span class="p">(</span><span class="n">String</span><span class="p">)</span> <span class="err">'</span><span class="n">dev</span><span class="p">(</span><span class="n">or</span> <span class="n">whatever</span> <span class="n">you</span> <span class="n">named</span> <span class="n">your</span> <span class="n">environment</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">use</span><span class="p">)</span><span class="err">'</span>
+
+</pre></div>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Chocobo allows you to easily create async models/collections in your iOS app to communicate easily with a RESTful API.</p>
+
+<h3>
+<a name="models" class="anchor" href="#models"><span class="octicon octicon-link"></span></a>Models</h3>
+
+<p>Extend your model from the Model object and specify all the attributes using properties.</p>
+
+<div class="highlight highlight-c"><pre><span class="err">@</span><span class="n">interface</span> <span class="n">User</span> <span class="o">:</span> <span class="n">Model</span>
+
+<span class="err">@</span><span class="n">property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">userId</span><span class="p">;</span>
+<span class="err">@</span><span class="n">property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">firstName</span><span class="p">;</span>
+<span class="err">@</span><span class="n">property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">lastName</span><span class="p">;</span>
+<span class="err">@</span><span class="n">property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">email</span><span class="p">;</span>
+
+<span class="err">@</span><span class="n">end</span>
+</pre></div>
+
+<p>Next you will need to override the models method 'updateModelWithJson:'</p>
+
+<div class="highlight highlight-c"><pre><span class="o">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">updateModelWithJson</span><span class="o">:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="n">json</span>
+<span class="p">{</span>
+    <span class="n">NSDictionary</span> <span class="o">*</span><span class="n">attributes</span> <span class="o">=</span> <span class="p">[</span><span class="n">json</span> <span class="n">valueForKey</span><span class="o">:</span><span class="err">@</span><span class="s">"user"</span><span class="p">];</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">userId</span> <span class="o">=</span> <span class="p">[</span><span class="n">attributes</span> <span class="n">valueForKey</span><span class="o">:</span><span class="err">@</span><span class="s">"id"</span><span class="p">];</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">firstName</span> <span class="o">=</span> <span class="p">[</span><span class="n">attributes</span> <span class="n">valueForKey</span><span class="o">:</span><span class="err">@</span><span class="s">"first_name"</span><span class="p">];</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">lastName</span> <span class="o">=</span> <span class="p">[</span><span class="n">attributes</span> <span class="n">valueForKey</span><span class="o">:</span><span class="err">@</span><span class="s">"last_name"</span><span class="p">];</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">email</span> <span class="o">=</span> <span class="p">[</span><span class="n">attributes</span> <span class="n">valueForKey</span><span class="o">:</span><span class="err">@</span><span class="s">"email"</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Now you can call:</p>
+
+<pre><code>[self fetchFromEndpoint:@"login.json" withParams:parameters onSuccess:^(id responseObject) {
+
+        NSLog(@"Do Something with your response object here");
+
+    } onFailure:^(NSError *error)  {
+
+        NSLog(@"Do something with the error");
+
+    }];
+</code></pre>
+
+<h3>
+<a name="collections" class="anchor" href="#collections"><span class="octicon octicon-link"></span></a>Collections</h3>
+
+<p>Collections will extend off the Collection object.</p>
+
+<div class="highlight highlight-c"><pre><span class="cp">#import "Collection.h"</span>
+
+<span class="err">@</span><span class="n">interface</span> <span class="n">Users</span> <span class="o">:</span> <span class="n">Collection</span>
+
+<span class="err">@</span><span class="n">end</span>
+</pre></div>
+
+<p>Your collection will then need to overide 2 functions</p>
+
+<div class="highlight highlight-c"><pre><span class="o">-</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">model</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="err">@</span><span class="s">"User"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">-</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">collectionEndpoint</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="err">@</span><span class="s">"users.json"</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>This will allow the collection to automatically grab all the models from the collection
+endpoint and set them in the models array.</p>
+
+<p>Accessing the models in a collection are easy. Just use the models accessor.</p>
+
+<div class="highlight highlight-c"><pre><span class="p">[[</span><span class="n">collection</span> <span class="n">models</span><span class="p">]</span> <span class="n">objectAtIndex</span><span class="o">:</span> <span class="mi">0</span><span class="p">];</span>
+</pre></div>
+
+<h3>
+<a name="has-many-relationships" class="anchor" href="#has-many-relationships"><span class="octicon octicon-link"></span></a>Has Many Relationships</h3>
+
+<p>Setting up a has many relationship in your model is easy. Set up an NSMutableArray as a property on the
+model of the model type that the relationship is set.</p>
+
+<div class="highlight highlight-c"><pre><span class="cp"># models/user.h</span>
+
+<span class="err">@</span><span class="n">property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">NSMutableArray</span> <span class="o">*</span><span class="n">accounts</span><span class="p">;</span>
+</pre></div>
+
+<p>Synthesize and set up the relationship in a loop inside your updateModelWithJson: function</p>
+
+<div class="highlight highlight-c"><pre><span class="cp"># models/user.m</span>
+
+<span class="err">@</span><span class="n">synthesize</span> <span class="n">wells</span> <span class="o">=</span> <span class="n">_wells</span><span class="p">;</span>
+
+<span class="o">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">updateModelWithJson</span><span class="o">:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="n">json</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">NSDictionary</span><span class="o">*</span> <span class="n">key</span> <span class="n">in</span> <span class="p">[</span><span class="n">json</span> <span class="n">valueForKey</span><span class="o">:</span><span class="err">@</span><span class="s">"accounts"</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">Account</span> <span class="o">*</span><span class="n">accountModel</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Account</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">accountModel</span> <span class="n">updateModelWithJson</span><span class="o">:</span><span class="n">key</span><span class="p">];</span>
+
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">accounts</span> <span class="n">addObject</span><span class="o">:</span><span class="n">account</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>
+<a name="has-one-relationships" class="anchor" href="#has-one-relationships"><span class="octicon octicon-link"></span></a>Has One Relationships</h3>
+
+<p>To setup a has one relationship on your models, set up a property on your model of the type you would like to set it up with.</p>
+
+<div class="highlight highlight-c"><pre><span class="cp"># models/user.h</span>
+
+<span class="cp">#import 'Account.h'</span>
+
+<span class="err">@</span><span class="n">property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">Account</span> <span class="o">*</span><span class="n">account</span><span class="p">;</span>
+</pre></div>
+
+<p>And then in updateModelWithJson:</p>
+
+<div class="highlight highlight-c"><pre><span class="cp"># models/user.m</span>
+
+<span class="o">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">updateModelWithJson</span><span class="o">:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="n">json</span>
+<span class="p">{</span>
+    <span class="n">Account</span> <span class="o">*</span><span class="n">account</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Account</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">account</span> <span class="n">updateModelWithJson</span><span class="o">:</span> <span class="p">[</span><span class="n">json</span> <span class="n">valueForKey</span><span class="o">:</span><span class="err">@</span><span class="s">"account"</span><span class="p">]];</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">account</span> <span class="o">=</span> <span class="n">account</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>** Creative Commons 3.0 - Attribution Sharealike**</p>
+
+<p>You can remix, copy or use for both commercial and non-commercial products and services but you need to provide attribution for the original work in the source code to <em>"PetroFeed Inc."</em>. You must also share the original or any derivative under the same license. A description of the license can be found <a href="http://creativecommons.org/licenses/by-sa/3.0">here</a>.</p>
+
+<hr><p>Proudly brought to you by <a href="http://PetroFeed.com">PetroFeed</a>.</p>
+
+<p><img src="https://www.petrofeed.com/img/company/pedro.png" alt="Pedro"></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/PetroFeed/chocobo/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/PetroFeed/chocobo/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/PetroFeed/chocobo"></a> is maintained by <a href="https://github.com/PetroFeed">PetroFeed</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
