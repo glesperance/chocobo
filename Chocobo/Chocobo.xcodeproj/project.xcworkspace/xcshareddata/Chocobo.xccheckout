@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>11DA25A3-EA58-4B42-97FA-3CE687FD795A</string>
+	<string>9E10C7C8-C050-4306-BC70-782A6E61E5EA</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Chocobo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>https://github.com/LGrizz/chocobo.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Chocobo.xcworkspace</string>
+	<string>Chocobo/Chocobo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>10D2B174-FC50-4F78-BA81-6FEF0BB72E2E</key>
-		<string>..</string>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/LGrizz/chocobo.git</string>
