@@ -5,7 +5,7 @@
 #pragma mark -
 #pragma mark Async Helpers
 
--(void) fetchFromEndpoint:(NSString *)endPoint withParams: (NSDictionary *)parameters onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure
+-(void) postToEndpoint:(NSString *)endPoint withParams: (NSDictionary *)parameters onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
@@ -17,6 +17,40 @@
 
         failure(error);
 
+    }];
+}
+
+-(void) putToEndpoint:(NSString *)endPoint withParams:(NSDictionary *)parameters onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager PUT:[[self endPoint] stringByAppendingString:endPoint] parameters:[self updateParams:parameters] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        success(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        failure(error);
+        
+    }];
+}
+
+-(void) multipartPostToEndpoint:(NSString *)endPoint withData:(NSData *)data withName:(NSString *)name withFileName:(NSString *)fileName withMimeType:(NSString *)mimeType withParams: (NSDictionary *)parameters onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager POST:[[self endPoint] stringByAppendingString:endPoint] parameters:[self updateParams:parameters] constructingBodyWithBlock:^(id<AFMultipartFormData> formData){
+        
+        [formData appendPartWithFileData:data name:name fileName:fileName mimeType:mimeType];
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        success(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        failure(error);
+        
     }];
 }
 
@@ -35,9 +69,10 @@
     }];
 }
 
--(NSString*) endPoint
+-(NSString *) endPoint
 {
-    return @"http://localhost:3000/";
+    Environment *myEnvironment = [Environment sharedInstance];
+    return myEnvironment.URL;
 }
 
 @end
