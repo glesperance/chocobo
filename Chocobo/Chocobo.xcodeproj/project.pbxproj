@@ -1,0 +1,86 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		27014A0A19100B1700B17AD3 /* AsyncObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AsyncObject.h; path = ../Classes/ios/AsyncObject.h; sourceTree = "<group>"; };
+		27014A0B19100B1700B17AD3 /* AsyncObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AsyncObject.m; path = ../Classes/ios/AsyncObject.m; sourceTree = "<group>"; };
+		27014A0C19100B1700B17AD3 /* Collection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Collection.h; path = ../Classes/ios/Collection.h; sourceTree = "<group>"; };
+		27014A0D19100B1700B17AD3 /* Collection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Collection.m; path = ../Classes/ios/Collection.m; sourceTree = "<group>"; };
+		27014A0E19100B1700B17AD3 /* Environment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Environment.h; path = ../Classes/ios/Environment.h; sourceTree = "<group>"; };
+		27014A0F19100B1700B17AD3 /* Environment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Environment.m; path = ../Classes/ios/Environment.m; sourceTree = "<group>"; };
+		27014A1019100B1700B17AD3 /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Model.h; path = ../Classes/ios/Model.h; sourceTree = "<group>"; };
+		27014A1119100B1700B17AD3 /* Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Model.m; path = ../Classes/ios/Model.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		27014A031910085500B17AD3 = {
+			isa = PBXGroup;
+			children = (
+				27014A0A19100B1700B17AD3 /* AsyncObject.h */,
+				27014A0B19100B1700B17AD3 /* AsyncObject.m */,
+				27014A0C19100B1700B17AD3 /* Collection.h */,
+				27014A0D19100B1700B17AD3 /* Collection.m */,
+				27014A0E19100B1700B17AD3 /* Environment.h */,
+				27014A0F19100B1700B17AD3 /* Environment.m */,
+				27014A1019100B1700B17AD3 /* Model.h */,
+				27014A1119100B1700B17AD3 /* Model.m */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		27014A041910085500B17AD3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = 27014A071910085500B17AD3 /* Build configuration list for PBXProject "Chocobo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 27014A031910085500B17AD3;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		27014A081910085500B17AD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27014A091910085500B17AD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		27014A071910085500B17AD3 /* Build configuration list for PBXProject "Chocobo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27014A081910085500B17AD3 /* Debug */,
+				27014A091910085500B17AD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27014A041910085500B17AD3 /* Project object */;
+}
