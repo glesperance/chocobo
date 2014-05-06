@@ -15,10 +15,9 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '7.0'
   s.requires_arc = true
 
-  s.source_files = 'Classes/ios/**'
+  s.source_files = 'Chocobo/**'
 
-  s.ios.exclude_files = 'Classes/osx'
-  s.public_header_files = 'Classes/**/*.h'
+  s.public_header_files = 'Chocobo/*.h'
 
   s.dependency "AFNetworking", "~> 2.0"
 end

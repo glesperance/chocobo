@@ -9,5 +9,7 @@
 -(NSString *) collectionEndpoint;
 -(void) fetchWithParams:(NSDictionary *)params onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure;
 -(void)clearModels;
+-(NSInteger)modelCount;
+-(void)addModel:(id)model;
 
 @end
