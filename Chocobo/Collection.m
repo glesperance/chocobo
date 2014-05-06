@@ -38,11 +38,17 @@
     [self.models addObject:model];
 }
 
+-(NSString *)rootKey
+{
+    NSLog(@"[Collection] rootKey method not overriden");
+    return nil;
+}
+
 -(void) fetchWithParams:(NSDictionary *)params onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure
 {
     [self clearModels];
     [self getFromEndpoint:[self collectionEndpoint] withParams:params onSuccess:^(id responseObject) {
-        NSDictionary *attributes = [responseObject valueForKey:@"rigs"];
+        NSDictionary *attributes = [responseObject valueForKey:[self rootKey]];
 
         for (NSDictionary* key in attributes) {
 
