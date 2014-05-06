@@ -24,7 +24,7 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager PUT:[[self endPoint] stringByAppendingString:endPoint] parameters:[self updateParams:parameters] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager PUT:[[self endPoint] stringByAppendingString:endPoint] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         success(responseObject);
         
@@ -39,7 +39,7 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager POST:[[self endPoint] stringByAppendingString:endPoint] parameters:[self updateParams:parameters] constructingBodyWithBlock:^(id<AFMultipartFormData> formData){
+    [manager POST:[[self endPoint] stringByAppendingString:endPoint] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData){
         
         [formData appendPartWithFileData:data name:name fileName:fileName mimeType:mimeType];
         
