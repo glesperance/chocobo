@@ -1,9 +1,0 @@
-pod "Chocobo", :path => "../"
-
-platform :ios
-
-target "Demo" do
-end
-
-target "DemoTests" do
-end

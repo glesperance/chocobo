@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>11DA25A3-EA58-4B42-97FA-3CE687FD795A</string>
+	<string>A6A4DE79-D917-4DED-A588-81D4B6679C30</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Chocobo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>10D2B174-FC50-4F78-BA81-6FEF0BB72E2E</key>
-		<string>https://github.com/LGrizz/chocobo.git</string>
+		<key>9F494AE4-AEB1-46F3-9495-88C394705BC0</key>
+		<string>ssh://github.com/markhazlett/chocobo.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Chocobo.xcworkspace</string>
+	<string>Chocobo/Chocobo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>10D2B174-FC50-4F78-BA81-6FEF0BB72E2E</key>
-		<string>..</string>
+		<key>9F494AE4-AEB1-46F3-9495-88C394705BC0</key>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/LGrizz/chocobo.git</string>
+	<string>ssh://github.com/markhazlett/chocobo.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>10D2B174-FC50-4F78-BA81-6FEF0BB72E2E</string>
+	<string>9F494AE4-AEB1-46F3-9495-88C394705BC0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>10D2B174-FC50-4F78-BA81-6FEF0BB72E2E</string>
+			<string>9F494AE4-AEB1-46F3-9495-88C394705BC0</string>
 			<key>IDESourceControlWCCName</key>
 			<string>chocobo</string>
 		</dict>

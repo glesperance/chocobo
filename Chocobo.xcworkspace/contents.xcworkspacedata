@@ -1,58 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <FileRef
-      location = "group:CHANGELOG.md">
-   </FileRef>
-   <FileRef
-      location = "group:Chocobo.podspec">
-   </FileRef>
    <Group
-      location = "group:Classes"
-      name = "Classes">
-      <Group
-         location = "group:ios"
-         name = "ios">
-         <FileRef
-            location = "group:AsyncObject.h">
-         </FileRef>
-         <FileRef
-            location = "group:AsyncObject.m">
-         </FileRef>
-         <FileRef
-            location = "group:Collection.h">
-         </FileRef>
-         <FileRef
-            location = "group:Collection.m">
-         </FileRef>
-         <FileRef
-            location = "group:Environment.h">
-         </FileRef>
-         <FileRef
-            location = "group:Environment.m">
-         </FileRef>
-         <FileRef
-            location = "group:Model.h">
-         </FileRef>
-         <FileRef
-            location = "group:Model.m">
-         </FileRef>
-      </Group>
-   </Group>
-   <FileRef
-      location = "group:LICENSE">
-   </FileRef>
-   <Group
-      location = "group:Project"
-      name = "Project">
+      location = "group:Chocobo"
+      name = "Chocobo">
       <FileRef
-         location = "group:Podfile">
+         location = "group:AsyncObject.h">
+      </FileRef>
+      <FileRef
+         location = "group:AsyncObject.m">
+      </FileRef>
+      <FileRef
+         location = "group:Collection.h">
+      </FileRef>
+      <FileRef
+         location = "group:Collection.m">
+      </FileRef>
+      <FileRef
+         location = "group:Environment.h">
+      </FileRef>
+      <FileRef
+         location = "group:Environment.m">
+      </FileRef>
+      <FileRef
+         location = "group:Model.h">
+      </FileRef>
+      <FileRef
+         location = "group:Model.m">
       </FileRef>
    </Group>
    <FileRef
-      location = "group:Rakefile">
+      location = "group:Tests/Tests.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:README.md">
+      location = "group:Tests/Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

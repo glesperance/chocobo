@@ -1,0 +1,14 @@
+xcodeproj 'Tests'
+workspace '../Chocobo'
+
+def import_pods
+  pod 'Specta'
+  pod 'Expecta', '~> 0.2.1'
+  pod 'Chocobo', :path => '../'
+end
+
+target :ios do
+  platform :ios, '7.1'
+  link_with 'TestsTests'
+  import_pods
+end
