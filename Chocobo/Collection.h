@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "AsyncObject.h"
+#import "Model.h"
 
 @interface Collection : AsyncObject
 
@@ -12,4 +13,5 @@
 -(NSInteger)modelCount;
 -(void)addModel:(id)model;
 -(NSDictionary *)parse:(NSDictionary *) responseObject;
+-(void)updateCollectionWithJson:(NSDictionary *)jsonCollection;
 @end
