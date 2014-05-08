@@ -4,6 +4,15 @@
 
 @synthesize models = _models;
 
+-(id) initWithJson:(NSDictionary *)json
+{
+    self = [super init];
+    if (self) {
+        [self updateCollectionWithJson:json];
+    }
+    return self;
+}
+
 -(id)model
 {
     NSLog(@"[Collectionb] model: method not overriden.");

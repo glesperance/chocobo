@@ -5,7 +5,7 @@
 @interface Collection : AsyncObject
 
 @property (nonatomic, retain) NSMutableArray *models;
-
+-(id) initWithJson:(NSDictionary*)json;
 -(id)model;
 -(NSString *) collectionEndpoint;
 -(void) fetchWithParams:(NSDictionary *)params onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure;
