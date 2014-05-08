@@ -12,6 +12,14 @@
     }
     return self;
 }
+-(id) initWithModels:(NSDictionary *)models
+{
+    self = [super init];
+    if (self) {
+        [self updateCollectionWithModels:models];
+    }
+    return self;
+}
 
 -(id)model
 {
@@ -52,26 +60,30 @@
     return responseObject;
 }
 
--(void)updateCollectionWithJson:(NSDictionary *)jsonCollection
+-(void)updateCollectionWithModels:(NSDictionary *)modelsJson
 {
-    for (NSDictionary* model in jsonCollection) {
+    for (NSDictionary* model in modelsJson) {
         Class modelClass = NSClassFromString([self model]);
-        id modelObject = [(Model *)[modelClass alloc] initWithJson:modelObject];
+        id modelObject = [(Model *)[modelClass alloc] initWithJson:model];
         // add the object to the model group
         [self.models addObject:modelObject];
     }
+}
+
+-(void)updateCollectionWithJson:(NSDictionary *)jsonCollection
+{
+    NSDictionary *parsedModelsJson = [self parse:jsonCollection];
+    [self updateCollectionWithModels:parsedModelsJson];
 }
 
 -(void) fetchWithParams:(NSDictionary *)params onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure
 {
     [self clearModels];
     [self getFromEndpoint:[self collectionEndpoint] withParams:params onSuccess:^(id responseObject) {
-        NSDictionary *attributes = [self parse:responseObject];
         
-        [self updateCollectionWithJson:attributes];
-        
+        [self updateCollectionWithJson:responseObject];
         success(responseObject);
-
+        
     } onFailure:^(NSError *error) {
 
         failure(error);

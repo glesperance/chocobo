@@ -6,6 +6,7 @@
 
 @property (nonatomic, retain) NSMutableArray *models;
 -(id) initWithJson:(NSDictionary*)json;
+-(id) initWithModels:(NSDictionary *)models;
 -(id)model;
 -(NSString *) collectionEndpoint;
 -(void) fetchWithParams:(NSDictionary *)params onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure;
@@ -14,4 +15,5 @@
 -(void)addModel:(id)model;
 -(NSDictionary *)parse:(NSDictionary *) responseObject;
 -(void)updateCollectionWithJson:(NSDictionary *)jsonCollection;
+-(void)updateCollectionWithModels:(NSDictionary *)modelsJson;
 @end
