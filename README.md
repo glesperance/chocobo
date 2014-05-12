@@ -157,6 +157,10 @@ And then in updateModelWithJson:
 }
 ```
 
+## Development
+
+To run tests cd into the "Tests" directory and run ```pod install```. From there, open the Chocobo.xcworkspace and run ```command + u```
+
 ## License
 
 ** Creative Commons 3.0 - Attribution Sharealike**
