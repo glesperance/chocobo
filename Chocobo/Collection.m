@@ -4,6 +4,23 @@
 
 @synthesize models = _models;
 
+-(id) initWithJson:(NSDictionary *)json
+{
+    self = [super init];
+    if (self) {
+        [self updateCollectionWithJson:json];
+    }
+    return self;
+}
+-(id) initWithModels:(NSDictionary *)models
+{
+    self = [super init];
+    if (self) {
+        [self updateCollectionWithModels:models];
+    }
+    return self;
+}
+
 -(id)model
 {
     NSLog(@"[Collectionb] model: method not overriden.");
@@ -38,30 +55,35 @@
     [self.models addObject:model];
 }
 
--(NSDictionary *)parse:(NSDictionary *) responseObject
+-(NSDictionary *)parse:(NSDictionary *)responseObject
 {
     return responseObject;
+}
+
+-(void)updateCollectionWithModels:(NSDictionary *)modelsJson
+{
+    for (NSDictionary* model in modelsJson) {
+        Class modelClass = NSClassFromString([self model]);
+        id modelObject = [(Model *)[modelClass alloc] initWithJson:model];
+        // add the object to the model group
+        [self.models addObject:modelObject];
+    }
+}
+
+-(void)updateCollectionWithJson:(NSDictionary *)jsonCollection
+{
+    NSDictionary *parsedModelsJson = [self parse:jsonCollection];
+    [self updateCollectionWithModels:parsedModelsJson];
 }
 
 -(void) fetchWithParams:(NSDictionary *)params onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure
 {
     [self clearModels];
     [self getFromEndpoint:[self collectionEndpoint] withParams:params onSuccess:^(id responseObject) {
-        NSDictionary *attributes = [self parse:responseObject];
-
-        for (NSDictionary* key in attributes) {
-
-            Class modelFromString = NSClassFromString([self model]);
-            id modelObject = [[modelFromString alloc] init];
-
-            [modelObject performSelector: NSSelectorFromString(@"updateModelWithJson:") withObject:key];
-
-            // add the object to the model group
-            [self.models addObject:modelObject];
-        }
-
+        
+        [self updateCollectionWithJson:responseObject];
         success(responseObject);
-
+        
     } onFailure:^(NSError *error) {
 
         failure(error);
