@@ -2,6 +2,8 @@
 
 Backbon-ify your iOS models and make it extremely easy to communicate with a RESTful API. Provides an easy API to connect, communicate and return success/failure events.
 
+![Chocobo](http://upload.wikimedia.org/wikipedia/en/6/67/Chocobo.png)
+
 ## Installation
 
 Chocobo is available through [CocoaPods](http://cocoapods.org), to install
