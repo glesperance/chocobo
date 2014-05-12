@@ -11,6 +11,5 @@
 -(void)clearModels;
 -(NSInteger)modelCount;
 -(void)addModel:(id)model;
--(NSString *)rootKey;
-
+-(NSDictionary *)parse:(NSDictionary *) responseObject;
 @end
