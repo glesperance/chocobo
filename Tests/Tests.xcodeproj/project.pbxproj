@@ -100,7 +100,7 @@
 			children = (
 				4D7B40681917126600EFE7EE /* Pods-ios.xcconfig */,
 				4D55DA751916B00500EF6D33 /* Tests */,
-				4D55DA921916B00600EF6D33 /* TestsTests */,
+				4D55DA921916B00600EF6D33 /* Tests */,
 				4D55DA6C1916B00500EF6D33 /* Frameworks */,
 				4D55DA6B1916B00500EF6D33 /* Products */,
 				8F98967DF62149C1BEB05E86 /* Pods-Tests.xcconfig */,
@@ -158,12 +158,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4D55DA921916B00600EF6D33 /* TestsTests */ = {
+		4D55DA921916B00600EF6D33 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				4D55DAA21916B07C00EF6D33 /* Collection */,
 				4D55DA931916B00600EF6D33 /* Supporting Files */,
 			);
+			name = Tests;
 			path = TestsTests;
 			sourceTree = "<group>";
 		};
