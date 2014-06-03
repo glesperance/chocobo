@@ -5,7 +5,7 @@
 
 @interface Model : AsyncObject
 
-@property (nonatomic, weak) Collection * collection;
+@property (nonatomic, strong) Collection * collection;
 
 -(id) initWithJson:(NSDictionary*)json;
 -(void)updateModelWithJson:(NSDictionary *)json;

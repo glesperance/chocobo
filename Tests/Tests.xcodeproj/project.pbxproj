@@ -30,6 +30,7 @@
 		4D827A6B19199AB400591788 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D827A6A19199AB400591788 /* MobileCoreServices.framework */; };
 		4D827A6D19199ABB00591788 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D827A6C19199ABB00591788 /* CFNetwork.framework */; };
 		4D827A6F19199AEA00591788 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D827A6E19199AEA00591788 /* SenTestingKit.framework */; };
+		C0942A18193E7E0100E50CED /* ModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C0942A17193E7E0100E50CED /* ModelTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		4D827A6E19199AEA00591788 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		5D1D6DDA50F4466CAC5BAB38 /* Pods-ios.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.xcconfig"; path = "Pods/Pods-ios.xcconfig"; sourceTree = "<group>"; };
 		8F98967DF62149C1BEB05E86 /* Pods-Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.xcconfig"; path = "Pods/Pods-Tests.xcconfig"; sourceTree = "<group>"; };
+		C0942A17193E7E0100E50CED /* ModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 		4D55DA921916B00600EF6D33 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C0942A16193E7DD900E50CED /* Model */,
 				4D55DAA21916B07C00EF6D33 /* Collection */,
 				4D55DA931916B00600EF6D33 /* Supporting Files */,
 			);
@@ -183,6 +186,14 @@
 				4D55DAA31916B08900EF6D33 /* CollectionTests.m */,
 			);
 			name = Collection;
+			sourceTree = "<group>";
+		};
+		C0942A16193E7DD900E50CED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C0942A17193E7E0100E50CED /* ModelTests.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D55DAA41916B08900EF6D33 /* CollectionTests.m in Sources */,
+				C0942A18193E7E0100E50CED /* ModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
