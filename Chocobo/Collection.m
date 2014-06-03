@@ -50,8 +50,9 @@
     return [self.models count];
 }
 
--(void)addModel:(id)model
+-(void)addModel:(Model *)model
 {
+    model.collection = self;
     [self.models addObject:model];
 }
 
@@ -66,7 +67,7 @@
         Class modelClass = NSClassFromString([self model]);
         id modelObject = [(Model *)[modelClass alloc] initWithJson:model];
         // add the object to the model group
-        [self.models addObject:modelObject];
+        [self addModel:modelObject];
     }
 }
 

@@ -53,6 +53,12 @@ describe(@"addModel:", ^{
         [collection addModel:model1];
         expect([[collection models] objectAtIndex:0]).to.equal(model1);
     });
+    
+    it(@"has each model's collection property set to itself", ^{
+        [collection addModel:model1];
+        Model * addedModel = [[collection models] objectAtIndex:0];
+        expect(addedModel.collection).to.equal(collection);
+    });
 });
 
 describe(@"clearModels", ^{
