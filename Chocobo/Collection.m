@@ -92,4 +92,17 @@
     }];
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    Collection * clone = [[self.class allocWithZone:zone] init];
+    clone.models = [[NSMutableArray allocWithZone:zone] initWithArray:self.models
+                                                            copyItems:YES];
+    
+    for (Model * model in clone.models) {
+        model.collection = clone;
+    }
+    
+    return clone;
+}
+
 @end

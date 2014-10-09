@@ -10,29 +10,29 @@
 	<string>Chocobo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>93DE812D-A8FE-48D7-8D55-97680BDB40F4</key>
+		<key>B3DF0F4E081931F2900AFDC1B160770F1F999885</key>
 		<string>ssh://github.com/PetroFeed/chocobo.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Chocobo.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>93DE812D-A8FE-48D7-8D55-97680BDB40F4</key>
+		<key>B3DF0F4E081931F2900AFDC1B160770F1F999885</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/PetroFeed/chocobo.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>93DE812D-A8FE-48D7-8D55-97680BDB40F4</string>
+	<string>B3DF0F4E081931F2900AFDC1B160770F1F999885</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>93DE812D-A8FE-48D7-8D55-97680BDB40F4</string>
+			<string>B3DF0F4E081931F2900AFDC1B160770F1F999885</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Chocobo</string>
 		</dict>
