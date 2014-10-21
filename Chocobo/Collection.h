@@ -2,9 +2,10 @@
 #import "AsyncObject.h"
 #import "Model.h"
 
-@interface Collection : AsyncObject
+@interface Collection : AsyncObject <NSCopying>
 
 @property (nonatomic, retain) NSMutableArray *models;
+
 -(id) initWithJson:(NSDictionary*)json;
 -(id) initWithModels:(NSDictionary *)models;
 -(id)model;
