@@ -11,5 +11,6 @@
 -(void)updateWithJson:(NSDictionary *)json;
 -(void)updateModelWithJson:(NSDictionary *)json __attribute__((deprecated));
 -(void)addDetailsWithJson:(NSDictionary*)json;
+-(void)save:(NSDictionary *)attributes success:(void(^)(id responseObject))success failure:(void (^)(NSError* error))failure;
 
 @end
