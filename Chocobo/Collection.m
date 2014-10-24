@@ -1,4 +1,5 @@
 #import "Collection.h"
+#import <objc/runtime.h>
 
 @implementation Collection
 
@@ -8,7 +9,7 @@
 {
     self = [super init];
     if (self) {
-        [self updateCollectionWithJson:json];
+        [self updateWithJson:json];
     }
     return self;
 }
@@ -36,10 +37,8 @@
 
 -(NSString *) collectionEndpoint
 {
-    NSLog(@"[Collection] collectionEndpoint: method not overriden");
-    return nil;
+    return [self endPoint];
 }
-
 -(void)clearModels
 {
     [self.models removeAllObjects];
@@ -71,8 +70,22 @@
     }
 }
 
--(void)updateCollectionWithJson:(NSDictionary *)jsonCollection
+-(void)updateCollectionWithJson:(NSDictionary *)jsonCollection __attribute__((deprecated))
 {
+    [self updateWithJson:jsonCollection];
+}
+
+-(void)updateWithJson:(NSDictionary *)jsonCollection
+{
+    // Maintain backward compatibility with subclasses of Collection that
+    // implemented a updateCollectionWithJson instead of updateWithJson
+    if (class_getMethodImplementation(self.class, @selector(updateCollectionWithJson:)) != class_getMethodImplementation(Collection.class, @selector(updateCollectionWithJson:))) {
+        NSLog(@"!!! ChocoboSubclassingWarning: %@ should override `updateWithJson` method instead of deprecated `updateCollectionWithJson` method", NSStringFromClass(self.class));
+        
+        [self performSelector:@selector(updateCollectionWithJson:) withObject:jsonCollection];
+        return;
+    }
+    
     NSDictionary *parsedModelsJson = [self parse:jsonCollection];
     [self updateCollectionWithModels:parsedModelsJson];
 }
@@ -80,16 +93,7 @@
 -(void) fetchWithParams:(NSDictionary *)params onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure
 {
     [self clearModels];
-    [self getFromEndpoint:[self collectionEndpoint] withParams:params onSuccess:^(id responseObject) {
-        
-        [self updateCollectionWithJson:responseObject];
-        success(responseObject);
-        
-    } onFailure:^(NSError *error) {
-
-        failure(error);
-
-    }];
+    [super fetchWithParams:params onSuccess:success onFailure:failure];
 }
 
 - (id)copyWithZone:(NSZone *)zone

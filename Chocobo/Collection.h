@@ -9,12 +9,12 @@
 -(id) initWithJson:(NSDictionary*)json;
 -(id) initWithModels:(NSDictionary *)models;
 -(id)model;
--(NSString *) collectionEndpoint;
--(void) fetchWithParams:(NSDictionary *)params onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure;
+-(NSString *) collectionEndpoint __attribute__((deprecated));
 -(void)clearModels;
 -(NSInteger)modelCount;
 -(void)addModel:(id)model;
 -(NSDictionary *)parse:(NSDictionary *) responseObject;
--(void)updateCollectionWithJson:(NSDictionary *)jsonCollection;
+-(void)updateWithJson:(NSDictionary *)jsonCollection;
+-(void)updateCollectionWithJson:(NSDictionary *)jsonCollection __attribute__((deprecated));
 -(void)updateCollectionWithModels:(NSDictionary *)modelsJson;
 @end

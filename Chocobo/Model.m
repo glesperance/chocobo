@@ -6,22 +6,23 @@
 {
     self = [super init];
     if (self) {
-        [self updateModelWithJson:json];
+        [self updateWithJson:json];
     }
     return self;
+}
+
+
+-(void)updateModelWithJson:(NSDictionary *)json __attribute__((deprecated))
+{
+    [self updateWithJson:json];
 }
 
 #pragma mark -
 #pragma mark Initializers
 
--(void)updateModelWithJson:(NSDictionary *)json
-{
-    NSLog(@"[Model] updateModelWithJson: method not overriden. JSON data not being saved: %@", json);
-}
-
 -(void) addDetailsWithJson:(NSDictionary*)json
 {
-    [self updateModelWithJson:json];
+    [self updateWithJson:json];
 }
 
 @end
