@@ -25,6 +25,15 @@
     [NSException raise:@"ChocoboSubclassingError" format:@"AsyncObject subclass %@ must override `updateWithJson` method", NSStringFromClass(self.class)];
 }
 
+- (NSString *)requestEndPoint:(NSString *)relativeEndPoint
+{
+    return [@[[self appEndPoint],
+              [self endPoint],
+              relativeEndPoint ? relativeEndPoint : @""]
+            
+            componentsJoinedByString:@""];
+}
+
 -(NSString *) endPoint
 {
     // Maintain backward compatibility with subclasses of Collection that
@@ -39,21 +48,20 @@
         }
     }
     
-    [NSException raise:@"AsyncObject subclass must override `endPoint` method" format:nil];
-    return nil;
+    [NSException raise:@"ChocoboSubclassingError" format:@"AsyncObject subclass %@ must override `endPoint` method", NSStringFromClass(self.class)];return nil;
 }
 
 -(void) postToEndpoint:(NSString *)endPoint withParams: (NSDictionary *)parameters onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager POST:[self requestEndPoint:endPoint] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
-    [manager POST:[[self appEndPoint] stringByAppendingString:endPoint] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-        success(responseObject);
+        if (success) success(responseObject);
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
-        failure(error);
+        if (failure) failure(error);
 
     }];
 }
@@ -62,13 +70,13 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager PUT:[[self appEndPoint] stringByAppendingString:endPoint] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager PUT:[self requestEndPoint:endPoint] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        success(responseObject);
+        if (success) success(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        failure(error);
+        if (failure) failure(error);
         
     }];
 }
@@ -77,13 +85,13 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager DELETE:[[self appEndPoint] stringByAppendingString:endPoint] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager DELETE:[self requestEndPoint:endPoint] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        success(responseObject);
+        if (success) success(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        failure(error);
+        if (failure) failure(error);
         
     }];
 }
@@ -92,17 +100,17 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager POST:[[self appEndPoint] stringByAppendingString:endPoint] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData){
+    [manager POST:[self requestEndPoint:endPoint] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData){
         
         [formData appendPartWithFileData:data name:name fileName:fileName mimeType:mimeType];
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        success(responseObject);
+        if (success) success(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        failure(error);
+        if (failure) failure(error);
         
     }];
 }
@@ -110,24 +118,24 @@
 -(void) getFromEndpoint:(NSString *)endPoint withParams:(NSDictionary *)parameters onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager GET:[self requestEndPoint:endPoint] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
-    [manager GET:[[self appEndPoint] stringByAppendingString:endPoint] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-        success(responseObject);
+        if (success) success(responseObject);
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
-        failure(error);
+        if (failure) failure(error);
 
     }];
 }
 
 -(void) fetchWithParams:(NSDictionary *)params onSuccess:(void (^)(id responseObject))success onFailure:(void (^)(NSError* error))failure
 {
-    [self getFromEndpoint:[self endPoint] withParams:params onSuccess:^(id responseObject) {
+    [self getFromEndpoint:nil withParams:params onSuccess:^(id responseObject) {
         
         [self updateWithJson:responseObject];
-        success(responseObject);
+        if (success) success(responseObject);
         
     } onFailure:^(NSError *error) {
         if (failure) failure(error);
