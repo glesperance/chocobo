@@ -23,7 +23,8 @@
     // Save the old attributes
     NSMutableDictionary * oldAttributes = [[NSMutableDictionary alloc] init];
     for (id key in attributes) {
-        [oldAttributes setObject:[self valueForKey:key] forKey:key];
+        [oldAttributes setObject:([self valueForKey:key] ? [self valueForKey:key] : [NSNull null])
+                          forKey:key];
     }
     
     // set the new attributes
